@@ -4,27 +4,27 @@
 if (!cxn)
     var cxn = {};
 
-cxn.Net = function () {
+cxn.Net = function (data) {
     this.name = null;
     this.entities = new Array();
+    this.parse(data);
 };
 
 cxn.Net.prototype = {
     // nacte sam sebe ze zdroje
-    parse: function (data) {
-        var o = JSON.parse(data);
+    parse: function (o) {
+        //
         this.name = o.name;
         for (var x in o.entities) {
             var e = o.entities[x];
             if (e.clazz == 'Node') {
-                this.entities[e.id] = new Node(e);
+                this.entities[e.id] = new cxn.Node(this, e);
             } else if (e.clazz = 'Link') {
-                this.entities[e.id] = new Link(e);
+                this.entities[e.id] = new cxn.Link(this, e);
             } else if (e.clazz = 'Tag') {
-                this.entities[e.id] = new Tag(e);
+                this.entities[e.id] = new cxn.Tag(this, e);
             }
         }
-        return this;
     },
     // vlozi nebo prepise objekt
     put: function (o) {
@@ -34,6 +34,11 @@ cxn.Net.prototype = {
     // get by id
     get: function (id) {
         return this.elements[id];
+    },
+
+    render: function (c) {
+        console.log(c);
+        //var ctx = c.getContext("2d");
     }
 };
 

@@ -1,11 +1,10 @@
 if (!cxn)
     var cxn = {};
 
-cxn.Link = function (net, o) {
+cxn.Node = function (net, o) {
     this.net = net;
     this.id = o.id;
-    this.off = o.off;
-    this.target = o.target;
+    this.name = o.name;
     this.tags = o.tags;
 }
 
@@ -18,15 +17,17 @@ cxn.Node.prototype = {
         return this.id;
     },
     // jmeno
-    getOff: function () {
-        return this.off;
-    },
-    // target
-    getTarget: function () {
-        return this.target;
+    getName: function () {
+        return this.name;
     },
     // pole tagu
     getTags: function () {
         return this.tags;
+    },
+    // render object on position with size
+    render: function (ctx, x, y, size) {
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, 2 * Math.PI);
+        ctx.stroke();
     }
 }

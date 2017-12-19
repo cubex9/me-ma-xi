@@ -1,0 +1,33 @@
+body {
+
+    margin: 0pt;
+
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    font-size: 20pt;
+
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.top, .top-menu {
+
+    margin: 0pt;
+
+    background-color: black;
+    color: wheat;
+
+    padding: 0.2em;
+
+    border-right: 1pt solid wheat;
+
+    display: inline-block;
+}
+
+.top-menu {
+    color: white;
+}

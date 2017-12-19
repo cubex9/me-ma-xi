@@ -1,10 +1,11 @@
 if (!cxn)
     var cxn = {};
 
-cxn.Node = function (net, o) {
-    this.net = net;
+cxn.Link = function (net, o) {
+    this.parent = net;
     this.id = o.id;
-    this.name = o.name;
+    this.off = o.off;
+    this.target = o.target;
     this.tags = o.tags;
 }
 
@@ -17,8 +18,12 @@ cxn.Node.prototype = {
         return this.id;
     },
     // jmeno
-    getName: function () {
-        return this.name;
+    getOff: function () {
+        return this.off;
+    },
+    // target
+    getTarget: function () {
+        return this.target;
     },
     // pole tagu
     getTags: function () {
