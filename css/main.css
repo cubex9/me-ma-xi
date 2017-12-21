@@ -21,7 +21,7 @@ body {
     background-color: black;
     color: wheat;
 
-    padding: 0.2em;
+    padding: 0pt;
 
     border-right: 1pt solid wheat;
 
@@ -30,4 +30,10 @@ body {
 
 .top-menu {
     color: white;
+}
+
+.node-font {
+
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 14pt;
 }

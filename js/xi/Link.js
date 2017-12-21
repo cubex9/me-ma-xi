@@ -1,7 +1,7 @@
 if (!cxn)
     var cxn = {};
 
-cxn.Link = function (net, o) {
+cxn.link = function (net, o) {
     this.parent = net;
     this.id = o.id;
     this.off = o.off;
@@ -9,7 +9,7 @@ cxn.Link = function (net, o) {
     this.tags = o.tags;
 }
 
-cxn.Node.prototype = {
+cxn.link.prototype = {
     // nacte sam sebe ze zdroje
     parse: function (data) {
         var o = JSON.parse(data);

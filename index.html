@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
+    <script type="text/javascript" src="js/xi/Mapper.js"></script>
     <script type="text/javascript" src="js/xi/Net.js"></script>
     <script type="text/javascript" src="js/xi/Node.js"></script>
     <script type="text/javascript" src="js/xi/Link.js"></script>
     <script type="text/javascript" src="js/xi/Tag.js"></script>
+
+    <script type="text/javascript" src="js/libs/snap.svg-min.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto+Mono" rel="stylesheet">
 
@@ -17,26 +19,33 @@
 
 </head>
 <body>
+
+
 <div>
     <div class="top">me*ma</div>
-    <div class="top-menu" id='m1'>menu...</div>
+    <!--<div class="top-menu" id='nodes'>nodes</div>-->
+    <!--<div class="top-menu" id="links">links</div>-->
+    <!--<div class="top-menu" id="tags">tags</div>-->
+    <div class="top-menu" id="add">+</div>
 </div>
 
-<canvas id='g1'>graph...</canvas>
+<svg height="0" width="0"></svg>
+
 
 <script type="text/javascript">
     window.$ = window.jQuery = require('./js/libs/jquery-3.2.1.min.js')
 
-    $.getJSON("http://localhost/rest/nodes/net")
-        .done(function (data) {
-            net = new cxn.Net(data);
-            net.render('g1');
+    var snap = new Snap();
+    var net = new cxn.Net();
 
-            console.log("FEFE: rest/nodes/net -> " + net.toString());
-        })
-        .fail(function () {
-            console.log("error");
-        });
+    $.getJSON("http://localhost/rest/nodes/net").done(d => {
+
+            net.nodes = mapper.parse(net, d);
+            net.render(snap);
+
+        }
+    ).fail(() => console.log("error net load"));
+
 
 </script>
 </body>

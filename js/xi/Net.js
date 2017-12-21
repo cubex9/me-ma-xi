@@ -4,42 +4,21 @@
 if (!cxn)
     var cxn = {};
 
-cxn.Net = function (data) {
+cxn.Net = function () {
     this.name = null;
-    this.entities = new Array();
-    this.parse(data);
+    this.nodes = null;
+    this.snap = null;
 };
 
 cxn.Net.prototype = {
-    // nacte sam sebe ze zdroje
-    parse: function (o) {
-        //
-        this.name = o.name;
-        for (var x in o.entities) {
-            var e = o.entities[x];
-            if (e.clazz == 'Node') {
-                this.entities[e.id] = new cxn.Node(this, e);
-            } else if (e.clazz = 'Link') {
-                this.entities[e.id] = new cxn.Link(this, e);
-            } else if (e.clazz = 'Tag') {
-                this.entities[e.id] = new cxn.Tag(this, e);
-            }
+
+    render: function (snap) {
+
+        this.snap = snap;
+
+        for (var n in this.nodes) {
+            this.nodes[n].render(snap, 100 + n * 20, 100 + n * 20);
         }
-    },
-    // vlozi nebo prepise objekt
-    put: function (o) {
-        this.elements[o.getId()] = o;
-    },
-
-    // get by id
-    get: function (id) {
-        return this.elements[id];
-    },
-
-    render: function (c) {
-        console.log(c);
-        //var ctx = c.getContext("2d");
     }
 };
 
-var net = null;
