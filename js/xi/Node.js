@@ -2,27 +2,34 @@ if (!cxn)
     var cxn = {};
 
 cxn.node = function () {
-    this.clazz = null;
-    this.net = null;
+    this._parent = null;
     this._id = null;
+    this._snap = null;
+
     this.name = null;
     this.tags = null;
 
-    this.snap = null;
+
+    this._links = new Array();
 }
 
 cxn.node.prototype = {
 
+    link: function (l) {
+        this.links.push(l);
+    },
+
     // render object on position with size
     render: function (s, x, y) {
 
-
+        /* name of node */
         var t = s.text(x + 30, y - 20, this.name);
         t.addClass("node-font");
 
-
+        /* inner circle, dragable */
         var c = s.circle(x, y, 25);
 
+        /* out circle with collor */
         var c2 = s.circle(x, y, 30);
 
         c2.attr({
@@ -52,13 +59,6 @@ cxn.node.prototype = {
             strokeOpacity: 1
         });
 
-        // if (datas.settings[i] != null) {
-        //     r.attr({
-        //         fill: "#000000",
-        //         fillOpacity: 0.3
-        //     });
-        // }
-
         c.mouseover(function () {
             this.attr({
                 fill: "#000000",
@@ -73,8 +73,12 @@ cxn.node.prototype = {
             });
         });
 
-        this.snap = s.group(c2, c, t);
-        this.snap.drag();
+        c.ondrag((x, y) => {
+            console.log(x + ", " + y);
+        })
+
+        this._snap = s.group(c2, c, t);
+        this._snap.drag();
 
     }
 }

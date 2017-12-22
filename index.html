@@ -36,12 +36,12 @@
     window.$ = window.jQuery = require('./js/libs/jquery-3.2.1.min.js')
 
     var snap = new Snap();
-    var net = new cxn.Net();
+    var project = new cxn.project();
 
     $.getJSON("http://localhost/rest/nodes/net").done(d => {
 
-            net.nodes = mapper.parse(net, d);
-            net.render(snap);
+        project._nodes = mapper.parse(project, d);
+        project.render(snap);
 
         }
     ).fail(() => console.log("error net load"));

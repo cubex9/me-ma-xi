@@ -7,6 +7,14 @@ cxn.Mapper = function () {
 }
 
 cxn.Mapper.prototype = {
+
+    /**
+     * wearing pure json data to pre-defined classes by clazz property
+     *
+     * @param parent
+     * @param data
+     * @returns {any[] | any}
+     */
     parse: function (parent, data) {
 
         /* pro pole vytvorime array, jinak ziskame object */
@@ -18,7 +26,7 @@ cxn.Mapper.prototype = {
             var d = eval(`new cxn.${data.clazz}()`);
 
             // set parent
-            d.parent = parent;
+            d._parent = parent;
         }
 
         // put all fieds
@@ -36,6 +44,15 @@ cxn.Mapper.prototype = {
         }
 
         return d;
+    },
+
+    /**
+     * remove all inner variables which have underscore in start of key name, except _id
+     *
+     * @param parent
+     */
+    serialize2json: function (o) {
+        return JSON.stringify(o, (key, val) => /_.*/.test(key) ? null : val)
     }
 }
 
