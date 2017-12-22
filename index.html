@@ -36,7 +36,7 @@
     window.$ = window.jQuery = require('./js/libs/jquery-3.2.1.min.js')
 
     var snap = new Snap();
-    var project = new cxn.project();
+    var project = new cxn.Project();
 
     $.getJSON("http://localhost/rest/nodes/net").done(d => {
 

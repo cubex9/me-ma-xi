@@ -1,7 +1,7 @@
 if (!cxn)
     var cxn = {};
 
-cxn.link = function () {
+cxn.Link = function () {
     this._parent = null;
     this._id = null;
 
@@ -12,7 +12,7 @@ cxn.link = function () {
     this.tags = null;
 }
 
-cxn.link.prototype = {
+cxn.Link.prototype = {
 
     // jmeno
     getOff: function () {

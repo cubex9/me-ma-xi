@@ -4,9 +4,21 @@ if (!cxn)
 
 cxn.Mapper = function () {
 
+    this.subtypes = [
+        {value: 'cxn.Entity', name: "entity"},
+        {value: 'cxn.Project', name: "project"},
+        {value: 'cxn.Node', name: "node"},
+        {value: 'cxn.Link', name: "link"},
+        {value: 'cxn.Tag', name: "tag"}
+    ]
 }
 
 cxn.Mapper.prototype = {
+
+    /* get subtipe from clazz definition */
+    subtype: function (clazz) {
+        return this.subtypes.find(e => e.name == name).value;
+    },
 
     /**
      * wearing pure json data to pre-defined classes by clazz property
@@ -23,7 +35,7 @@ cxn.Mapper.prototype = {
         } else {
 
             // create object by clazz
-            var d = eval(`new cxn.${data.clazz}()`);
+            var d = eval(`new ${ this.subtype(data.clazz)}()`);
 
             // set parent
             d._parent = parent;

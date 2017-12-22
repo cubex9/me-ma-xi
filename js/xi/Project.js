@@ -4,7 +4,7 @@
 if (!cxn)
     var cxn = {};
 
-cxn.project = function () {
+cxn.Project = function () {
     this._id = null;
 
     this.name = null;
@@ -15,7 +15,7 @@ cxn.project = function () {
     this._snap = null;
 };
 
-cxn.project.prototype = {
+cxn.Project.prototype = {
 
     render: function (snap) {
 

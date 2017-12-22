@@ -1,19 +1,18 @@
 if (!cxn)
     var cxn = {};
 
-cxn.tag = function (net, o) {
-    this.net = net;
-    this.id = o.id;
-    this.name = o.name;
+cxn.Tag = function () {
+    this._parent = null;
+    this._id = null;
+    this._snap = null;
+
+    this.name = null;
 }
 
-cxn.tag.prototype = {
-    // nacte sam sebe ze zdroje
-    parse: function (data) {
-        var o = JSON.parse(data);
-    },
+cxn.Tag.prototype = {
+
     getId: function () {
-        return this.id;
+        return this._id;
     },
     // jmeno
     getName: function () {

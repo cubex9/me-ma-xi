@@ -1,7 +1,7 @@
 if (!cxn)
     var cxn = {};
 
-cxn.node = function () {
+cxn.Node = function () {
     this._parent = null;
     this._id = null;
     this._snap = null;
@@ -13,7 +13,7 @@ cxn.node = function () {
     this._links = new Array();
 }
 
-cxn.node.prototype = {
+cxn.Node.prototype = {
 
     link: function (l) {
         this.links.push(l);
