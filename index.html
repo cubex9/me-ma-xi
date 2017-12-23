@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script type="text/javascript" src="js/xi/Mapper.js"></script>
-    <script type="text/javascript" src="js/xi/Net.js"></script>
+    <script type="text/javascript" src="js/xi/Entity.js"></script>
+    <script type="text/javascript" src="js/xi/Project.js"></script>
     <script type="text/javascript" src="js/xi/Node.js"></script>
     <script type="text/javascript" src="js/xi/Link.js"></script>
     <script type="text/javascript" src="js/xi/Tag.js"></script>
@@ -37,13 +38,12 @@
     var snap = new Snap();
     var project = new cxn.Project();
 
-    $.getJSON("http://localhost/rest/nodes/net").done(d => {
+    $.getJSON("http://localhost/rest/nodes/project").done(d => {
 
         project._nodes = mapper.parse(project, d);
         project.render(snap);
 
-        }
-    ).fail(() => console.log("error net load"));
+    }).fail(() => console.log("error net load"));
 
 
 </script>

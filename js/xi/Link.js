@@ -2,25 +2,21 @@ if (!cxn)
     var cxn = {};
 
 cxn.Link = function () {
-    this._parent = null;
-    this._id = null;
-
-    this._snap = null;
+    cxn.Entity.call(this);
 
     this.off = null;
     this.target = null;
     this.tags = null;
 }
 
-cxn.Link.prototype = {
+cxn.Link.prototype = Object.create(cxn.Entity.prototype);
+cxn.Link.prototype.constructor = cxn.Link;
 
-    // jmeno
-    getOff: function () {
-        return this.off;
-    },
-
-    // target
-    getTarget: function () {
-        return this.target;
-    }
-}
+// cxn.Link.prototype.off = function () {
+//     return this.off;
+// };
+//
+// cxn.Link.prototype.target = function () {
+//     return this.target;
+//
+// };

@@ -2,21 +2,14 @@ if (!cxn)
     var cxn = {};
 
 cxn.Tag = function () {
-    this._parent = null;
-    this._id = null;
-    this._snap = null;
+    cxn.Entity.call(this);
 
     this.name = null;
 }
 
-cxn.Tag.prototype = {
+cxn.Tag.prototype = Object.create(cxn.Entity.prototype);
+cxn.Tag.prototype.constructor = cxn.Tag;
 
-    getId: function () {
-        return this._id;
-    },
-    // jmeno
-    getName: function () {
-        return this.name;
-
-    }
-}
+// cxn.Tag.prototype.name = function () {
+//         return this.name;
+// };

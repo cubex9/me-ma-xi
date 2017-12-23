@@ -5,11 +5,11 @@ if (!cxn)
 cxn.Mapper = function () {
 
     this.subtypes = [
-        {value: 'cxn.Entity', name: "entity"},
-        {value: 'cxn.Project', name: "project"},
-        {value: 'cxn.Node', name: "node"},
-        {value: 'cxn.Link', name: "link"},
-        {value: 'cxn.Tag', name: "tag"}
+        {value: 'cxn.Entity', clazz: "entity"},
+        {value: 'cxn.Project', clazz: "project"},
+        {value: 'cxn.Node', clazz: "node"},
+        {value: 'cxn.Link', clazz: "link"},
+        {value: 'cxn.Tag', clazz: "tag"}
     ]
 }
 
@@ -17,7 +17,7 @@ cxn.Mapper.prototype = {
 
     /* get subtipe from clazz definition */
     subtype: function (clazz) {
-        return this.subtypes.find(e => e.name == name).value;
+        return this.subtypes.find(e => e.clazz == clazz).value;
     },
 
     /**
